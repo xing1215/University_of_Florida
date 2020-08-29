@@ -11,12 +11,15 @@ library(tidyverse)
 
 ## Question1
 ```{r, echo=FALSE}
-print("Hello, World")
+a = "Hello, World"
+a
 ```
 
 ## Question2
 ```{r}
-
+dhm = 
+  read_csv(file = "./stmf.csv", skip = 2) %>% 
+  janitor::clean_names()
 ```
 
 

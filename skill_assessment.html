@@ -375,6 +375,31 @@ summary {
 </div>
 <div id="question2" class="section level2">
 <h2>Question2</h2>
+<pre class="r"><code>dhm = 
+  read_csv(file = &quot;./stmf.csv&quot;, skip = 2) %&gt;% 
+  janitor::clean_names()</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   CountryCode = col_character(),
+##   Year = col_double(),
+##   Week = col_double(),
+##   Sex = col_character(),
+##   D0_14 = col_double(),
+##   D15_64 = col_double(),
+##   D65_74 = col_double(),
+##   D75_84 = col_double(),
+##   D85p = col_double(),
+##   DTotal = col_double(),
+##   R0_14 = col_double(),
+##   R15_64 = col_double(),
+##   R65_74 = col_double(),
+##   R75_84 = col_double(),
+##   R85p = col_double(),
+##   RTotal = col_double(),
+##   Split = col_double(),
+##   SplitSex = col_double(),
+##   Forecast = col_double()
+## )</code></pre>
 </div>
 
 

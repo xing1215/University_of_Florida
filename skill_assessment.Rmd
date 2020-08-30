@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(ggridges)
 ```
 
 ## Question1
@@ -16,11 +17,50 @@ a
 ```
 
 ## Question2
-```{r}
-dhm = 
+
+### input the dataset
+```{r, message=FALSE}
+hmd = 
   read_csv(file = "./stmf.csv", skip = 2) %>% 
   janitor::clean_names()
 ```
+
+### Descriptive statistics
+
+the table summarize the starting year ending year of being tracking for each country
+```{r, message=FALSE}
+hmd %>% 
+  group_by(country_code) %>% 
+  summarise(start_year = min(year), end_year = max(year), 
+            tracking_length = max(year) - min(year) + 1) %>%  
+  knitr::kable()
+```
+
+this table summarize the total number of death from the starting year to ending year for each country
+```{r, message=FALSE}
+hmd %>% 
+  group_by(country_code) %>% 
+  summarize(average_death = sum(d_total) / (max(year) - min(year) + 1)) %>% 
+  arrange(average_death) %>% 
+  knitr::kable()
+```
+
+
+```{r}
+plot_hmd = 
+  hmd %>% 
+  group_by(country_code, year) %>% 
+  summarize(total_death = sum(d_total))
+
+plot_hmd %>% 
+  ggplot(aes(x = year, y = total_death, color = country_code)) + 
+  geom_line() + 
+  facet_grid(. ~ country_code)
+```
+
+
+
+
 
 
 
